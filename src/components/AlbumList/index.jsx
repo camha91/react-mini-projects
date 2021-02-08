@@ -32,7 +32,7 @@ function AlbumListApp(props) {
         <div>
             <h1>Album Song List</h1>
 
-            <AlbumFeature albums={albumList} />
+            <AlbumFeature albumList={albumList} />
         </div>
     );
 }
