@@ -7,28 +7,34 @@ function TodoListApp() {
         {
             id: 1,
             title: "Practice react hooks",
-            completed: true
+            status: 'completed'
         }, {
             id: 2,
             title: "Practice scss",
-            completed: true
+            status: 'new'
         }, {
             id: 3,
             title: "Edit resume",
-            completed: false
+            status: 'new'
         }, {
             id: 4,
             title: "Practice interview",
-            completed: true
+            completed: 'new'
         }, {
             id: 5,
             title: "Apply for front end engineer jobs",
-            completed: false
+            completed: 'new'
         }
     ]);
 
-    function handleOnTodoClick(todo) {
-        const newTodoList = todoList.filter((x) => x.id !== todo.id);
+    function handleOnTodoClick(todo, idx) {
+        const newTodoList = [...todoList];
+
+        newTodoList[idx] = {
+            ...newTodoList[idx],
+            status: newTodoList[idx].status === 'new' ? 'completed' : 'new',
+        }
+
         setTodoList(newTodoList);
     };
 
