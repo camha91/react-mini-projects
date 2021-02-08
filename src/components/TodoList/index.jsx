@@ -5,25 +5,25 @@ import TodoForm from './components/TodoForm';
 function TodoListApp() {
     const [todoList, setTodoList] = useState([
         {
-            "id": 1,
-            "title": "Practice react hooks",
-            "completed": true
+            id: 1,
+            title: "Practice react hooks",
+            completed: true
         }, {
-            "id": 2,
-            "title": "Practice scss",
-            "completed": true
+            id: 2,
+            title: "Practice scss",
+            completed: true
         }, {
-            "id": 3,
-            "title": "Edit resume",
-            "completed": false
+            id: 3,
+            title: "Edit resume",
+            completed: false
         }, {
-            "id": 4,
-            "title": "Practice interview",
-            "completed": true
+            id: 4,
+            title: "Practice interview",
+            completed: true
         }, {
-            "id": 5,
-            "title": "Apply for front end engineer jobs",
-            "completed": false
+            id: 5,
+            title: "Apply for front end engineer jobs",
+            completed: false
         }
     ]);
 
