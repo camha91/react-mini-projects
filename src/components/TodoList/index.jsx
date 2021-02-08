@@ -3,7 +3,7 @@ import TodoFeature from './components/TodoFeature';
 import TodoForm from './components/TodoForm';
 
 function TodoListApp() {
-    const [todoList, setTodoList] = useState([
+    const initTodos = [
         {
             id: 1,
             title: "Practice react hooks",
@@ -19,13 +19,16 @@ function TodoListApp() {
         }, {
             id: 4,
             title: "Practice interview",
-            completed: 'new'
+            status: 'new'
         }, {
             id: 5,
             title: "Apply for front end engineer jobs",
-            completed: 'new'
+            status: 'new'
         }
-    ]);
+    ]
+    const [todoList, setTodoList] = useState(initTodos);
+    const [filteredStatus, setFilteredStatus] = useState('all');
+
 
     function handleOnTodoClick(todo, idx) {
         const newTodoList = [...todoList];
@@ -46,6 +49,20 @@ function TodoListApp() {
         setTodoList([...todoList, newTodo]);
     };
 
+    function handleShowAllClick() {
+        setFilteredStatus('all');
+    };
+
+    function handleShowCompletedClick() {
+        setFilteredStatus('completed');
+    };
+
+    function handleShowNewClick() {
+        setFilteredStatus('new');
+    };
+
+    const renderedTodoList = todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
+
     return (
         <div className="todo-list-app">
             <h1>React Hook: TodoList</h1>
@@ -53,9 +70,15 @@ function TodoListApp() {
             <TodoForm onSubmit={handleOnFormSubmit} />
 
             <TodoFeature
-                todos={todoList}
+                todos={renderedTodoList}
                 onTodoClick={handleOnTodoClick}
             />
+
+            <div>
+                <button onClick={handleShowAllClick}>Show All</button>
+                <button onClick={handleShowCompletedClick}>Show Completed</button>
+                <button onClick={handleShowNewClick}>Show New</button>
+            </div>
         </div>
     )
 }
