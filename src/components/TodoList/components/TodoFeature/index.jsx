@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import './styles.scss';
+
 
 TodoFeature.propTypes = {
     todos: PropTypes.array,
@@ -13,18 +16,22 @@ TodoFeature.defaultProps = {
 
 function TodoFeature({ todos, onTodoClick }) {
 
-    function handleTodoClick(todo) {
+    function handleTodoClick(todo, idx) {
         if (onTodoClick) {
-            onTodoClick(todo);
+            onTodoClick(todo, idx);
         }
     };
 
     return (
         <ul className="todo-list">
-            {todos.map((todo) => (
+            {todos.map((todo, idx) => (
                 <li
                     key={todo.id}
-                    onClick={() => handleTodoClick(todo)}
+                    className={classnames({
+                        'todo-item': true,
+                        completed: todo.status === 'completed',
+                    })}
+                    onClick={() => handleTodoClick(todo, idx)}
                 >
                     {todo.title}
                 </li>
