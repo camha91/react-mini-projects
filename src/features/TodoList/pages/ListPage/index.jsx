@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import TodoFeature from './components/TodoFeature';
-import TodoForm from './components/TodoForm';
+import TodoFeature from '../../components/TodoFeature';
+import TodoForm from '../../components/TodoForm';
 
-function TodoListApp() {
+function ListPage() {
     const initTodos = [
         {
             id: 1,
@@ -83,4 +83,4 @@ function TodoListApp() {
     )
 }
 
-export default TodoListApp;
+export default ListPage;
