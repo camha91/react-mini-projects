@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import queryString from 'query-string';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useHistory, useLocation, useRouteMatch } from 'react-router-dom';
 import TodoFeature from '../../components/TodoFeature';
 import TodoForm from '../../components/TodoForm';
 
@@ -25,9 +27,25 @@ function ListPage() {
             title: "Apply for front end engineer jobs",
             status: 'new'
         }
-    ]
+    ];
+
+    const location = useLocation();
+    const history = useHistory();
+    const match = useRouteMatch();
     const [todoList, setTodoList] = useState(initTodos);
-    const [filteredStatus, setFilteredStatus] = useState('all');
+
+    const [filteredStatus, setFilteredStatus] = useState(() => {
+        const params = queryString.parse(location.search);
+
+        return params.status || 'all';
+    });
+
+    // Listen to location search ---> update state
+    useEffect(() => {
+        const params = queryString.parse(location.search);
+
+        setFilteredStatus(params.status || 'all');
+    }, [location.search]);
 
 
     function handleOnTodoClick(todo, idx) {
@@ -50,18 +68,36 @@ function ListPage() {
     };
 
     function handleShowAllClick() {
-        setFilteredStatus('all');
+        // setFilteredStatus('all');
+        const queryParams = { status: 'all' };
+        history.push({
+            pathname: match.path,
+            search: queryString.stringify(queryParams),
+        });
     };
 
     function handleShowCompletedClick() {
-        setFilteredStatus('completed');
+        // setFilteredStatus('completed');
+        const queryParams = { status: 'completed' };
+        history.push({
+            pathname: match.path,
+            search: queryString.stringify(queryParams),
+        });
     };
 
     function handleShowNewClick() {
-        setFilteredStatus('new');
+        // setFilteredStatus('new');
+        const queryParams = { status: 'new' };
+        history.push({
+            pathname: match.path,
+            search: queryString.stringify(queryParams),
+        });
     };
 
-    const renderedTodoList = todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
+    // render if and only if todoList or filteredStatus change
+    const renderedTodoList = useMemo(() => {
+        return todoList.filter(todo => filteredStatus === 'all' || filteredStatus === todo.status);
+    }, [todoList, filteredStatus]);
 
     return (
         <div className="todo-list-app">

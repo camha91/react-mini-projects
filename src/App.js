@@ -14,8 +14,8 @@ function App() {
     <div className="app">
       Header
       <NavLink to="/home">Home Page</NavLink>
-      <NavLink to="/todos" active-className="active-menu">Todo List</NavLink>
-      <NavLink to="/albums" active-className="active">Album List</NavLink>
+      <NavLink to="/todos" active-classname="active-menu">Todo List</NavLink>
+      <NavLink to="/albums" active-classname="active">Album List</NavLink>
 
       <Switch>
         <Route path="/home" component={HomePage} exact />
