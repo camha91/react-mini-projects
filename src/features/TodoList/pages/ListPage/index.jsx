@@ -69,7 +69,14 @@ function ListPage() {
     // };
     // setTodoList([...todoList, newTodo]);
 
-    console.log('Form submit: ', formValues);
+    const newTodo = {
+      id: todoList.length + 1,
+      title: formValues.title,
+      status: 'new',
+    };
+
+    const newTodoList = [...todoList, newTodo];
+    setTodoList(newTodoList);
   }
 
   function handleShowAllClick() {
