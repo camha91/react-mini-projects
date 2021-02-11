@@ -13,6 +13,6 @@ const counterSlice = createSlice({
   },
 });
 
-const { actions, counterReducer } = counterSlice;
+const { actions, reducer } = counterSlice;
 export const { increase, decrease } = actions; // named export
-export default counterReducer; // default export
+export default reducer; // default export
