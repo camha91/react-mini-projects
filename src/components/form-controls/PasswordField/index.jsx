@@ -18,7 +18,7 @@ PasswordField.propTypes = {
   disabled: PropTypes.bool,
 };
 
-function PasswordField(props) {
+function PasswordField() {
   const { form, name, label, disabled } = props;
   const { errors } = form;
   const hasError = !!errors[name];
