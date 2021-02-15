@@ -6,21 +6,12 @@ import NotFoundPage from './components/NotFoundPage';
 import AlbumListApp from './features/AlbumList';
 import TodoListApp from './features/TodoList';
 import CounterApp from './features/Counter';
+import Header from 'components/Header';
 
 function App() {
   return (
     <div className="app">
-      Header
-      <NavLink to="/home">Home Page</NavLink>
-      <NavLink to="/todos" active-classname="active-menu">
-        Todo List
-      </NavLink>
-      <NavLink to="/albums" active-classname="active">
-        Album List
-      </NavLink>
-      <NavLink to="/counter" active-classname="active">
-        Counter
-      </NavLink>
+      <Header />
       <Switch>
         <Route path="/home" component={HomePage} exact />
         <Route path="/todos" component={TodoListApp} />
