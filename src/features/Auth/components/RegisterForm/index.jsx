@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import InputField from 'components/form-controls/InputField';
+import PasswordField from 'components/form-controls/PasswordField';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -31,9 +32,7 @@ RegisterForm.propTypes = {
 function RegisterForm(props) {
   const classes = useStyles();
 
-  const schema = yup.object().shape({
-    title: yup.string().required('Please enter title').min(5, 'Title is too short'),
-  });
+  const schema = yup.object().shape({});
 
   const form = useForm({
     defaultValues: {
@@ -66,10 +65,10 @@ function RegisterForm(props) {
       <form onSubmit={form.handleSubmit(handleSubmit)}>
         <InputField name="fullName" label="Full Name" form={form} />
         <InputField name="email" label="Email" form={form} />
-        <InputField name="password" label="Password" form={form} />
-        <InputField name="retypePassword" label="Retype Password" form={form} />
+        <PasswordField name="password" label="Password" form={form} />
+        <PasswordField name="retypePassword" label="Retype Password" form={form} />
 
-        <Button className={classes.submit} variant="contained" color="primary" fullWidth>
+        <Button type="submit" className={classes.submit} variant="contained" color="primary" fullWidth>
           Create an account
         </Button>
       </form>
