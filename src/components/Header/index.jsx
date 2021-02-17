@@ -1,4 +1,4 @@
-import { Box, IconButton, MenuItem, Menu } from '@material-ui/core';
+import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,8 +10,9 @@ import { AccountCircle, Close } from '@material-ui/icons';
 import CodeIcon from '@material-ui/icons/Code';
 import Login from 'features/Auth/components/Login';
 import Register from 'features/Auth/components/Register';
+import { logout } from 'features/Auth/userSlice';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +46,8 @@ const MODE = {
 export default function Header() {
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
   const loggedInUser = useSelector((state) => state.user.current);
   const isLoggedIn = !!loggedInUser.id;
 
@@ -66,6 +69,11 @@ export default function Header() {
 
   function handleMenuClose() {
     setAnchorEl(null);
+  }
+
+  function handleLogoutClick() {
+    const action = logout();
+    dispatch(action);
   }
 
   return (
@@ -121,7 +129,7 @@ export default function Header() {
         getContentAnchorEl={null}
       >
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-        <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
       </Menu>
 
       <Dialog
